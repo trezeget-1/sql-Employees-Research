@@ -1,20 +1,20 @@
                         --SQL FILE OF MY QUERIES--
 
---1 List the following details of each employee: employee number, last name, first name, gender, and salary.
+--1 Obtain the following details of each employee: employee number, last name, first name, gender, and salary.
 
 SELECT em.emp_no, em.last_name, em.first_name, em.gender, sa.salary
 FROM employees AS em
 LEFT JOIN salaries AS sa
 ON em.emp_no=sa.emp_no;
 
---2 List employees who were hired in 1986.
+--2 Employees who were hired in 1986.
 
 SELECT *
 FROM employees
 WHERE hire_date >= '1986-01-01' AND hire_date <= '1986-12-31';
 
 
---3 List the manager of each department with the following information: department number, department name, the manager's employee number, last name, first name, and start and end employment dates.
+--3 List of managers for each department with the following information: department number, department name, the manager's employee number, last name, first name, and start and end employment dates.
 
 SELECT dep.dept_no, dep.dept_name, depman.emp_no, emp.last_name, emp.first_name, depandemp.from_date, depandemp.to_date
 FROM departments AS dep
@@ -25,7 +25,7 @@ ON depman.emp_no=emp.emp_no
 LEFT JOIN departments_and_employees AS depandemp
 ON depandemp.emp_no=emp.emp_no;
 
---4 List the department of each employee with the following information: employee number, last name, first name, and department name.
+--4 List of the department of each employee with the following information: employee number, last name, first name, and department name.
 --I added the dates from which they started working on those departments.
 
 SELECT depandemp.emp_no, emp.last_name, emp.first_name, dep.dept_name, depandemp.from_date, depandemp.to_date
@@ -35,13 +35,13 @@ ON depandemp.emp_no=emp.emp_no
 LEFT JOIN departments AS dep
 ON dep.dept_no=depandemp.dept_no;
 
---5 List all employees whose first name is "Hercules" and last names begin with "B."
+--5 List of all the employees whose first name is "Hercules" and last names begin with "B."
 
 SELECT * FROM employees
 WHERE first_name LIKE '%Hercules%'
 AND last_name LIKE 'B%';
 
---6 List all employees in the Sales department, including their employee number, last name, first name, and department name.
+--6 List of the employees in the Sales department, including their employee number, last name, first name, and department name.
 
 SELECT emp.emp_no, emp.last_name, emp.first_name, dep.dept_name, depandemp.from_date, depandemp.to_date
 FROM employees AS emp
@@ -52,7 +52,7 @@ on depandemp.dept_no=dep.dept_no
 WHERE dep.dept_no='d007';
 
 
---7 List all employees in the Sales and Development departments, including their employee number, last name, first name, and department name.
+--7 List of all the employees in the Sales and Development departments, including their employee number, last name, first name, and department name.
 
 SELECT emp.emp_no, emp.last_name, emp.first_name, dep.dept_name, depandemp.from_date, depandemp.to_date
 FROM employees AS emp
@@ -72,7 +72,7 @@ LEFT JOIN departments AS dep
 on depandemp.dept_no=dep.dept_no
 WHERE dep.dept_no='d005';
 
---8 In descending order, list the frequency count of employee last names, i.e., how many employees share each last name.
+--8 List of the frequency count of employee's last names in descending order, i.e., how many employees share each last name.
 
 SELECT last_name, COUNT(last_name) AS "last_name_counts"
 FROM employees
